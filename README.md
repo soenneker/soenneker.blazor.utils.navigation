@@ -9,7 +9,7 @@ Can work side-by-side existing Blazor [NavigationManager](https://learn.microsof
 ## Installation
 
 ```
-Install-Package Soenneker.Blazor.Navigation
+dotnet add package Soenneker.Blazor.Navigation
 ```
 
 ## Usage
