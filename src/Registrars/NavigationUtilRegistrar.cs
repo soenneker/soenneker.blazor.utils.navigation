@@ -13,7 +13,7 @@ public static class NavigationRegistrar
     /// <summary>
     /// Shorthand for <code>services.TryAddScoped</code>
     /// </summary>
-    public static void AddNavigationUtil(this IServiceCollection services)
+    public static void AddNavigationUtilAsScoped(this IServiceCollection services)
     {
         services.TryAddScoped<INavigationUtil, NavigationUtil>();
     }
