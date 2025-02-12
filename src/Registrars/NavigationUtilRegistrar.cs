@@ -22,9 +22,9 @@ public static class NavigationRegistrar
     /// <summary>
     /// Call AFTER the WebAssembly/IServiceProvider has been built, aka builder.Build()
     /// </summary>
-    public static IServiceCollection WarmupNavigation(this IServiceCollection services)
+    public static IServiceProvider WarmupNavigation(this IServiceProvider provider)
     {
         provider.GetService<INavigationUtil>();
-        return services;
+        return provider;
     }
 }
