@@ -39,9 +39,9 @@ public interface INavigationUtil : IDisposable
     /// </summary>
     void NavigateBack();
 
-    void Login(string logoutPath = "authentication/login");
+    void Login(string logoutPath = "authentication/login", string? returnUrl = null);
 
-    void Logout(string logoutPath = "authentication/logout");
+    void Logout(string logoutPath = "authentication/logout", string? returnUrl = null);
 
     Uri GetCurrentUri();
 }

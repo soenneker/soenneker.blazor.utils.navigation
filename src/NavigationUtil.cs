@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.WebUtilities;
 using Soenneker.Blazor.Utils.Navigation.Abstract;
+using Soenneker.Extensions.String;
 
 namespace Soenneker.Blazor.Utils.Navigation;
 
@@ -50,14 +51,28 @@ public class NavigationUtil : INavigationUtil
         _navigationManager.NavigateTo(backPageUrl);
     }
 
-    public void Login(string loginPath = "authentication/login")
+    public void Login(string loginPath = "authentication/login", string? returnUrl = null)
     {
-        _navigationManager.NavigateToLogin(loginPath);
+        InteractiveRequestOptions? options = null;
+
+        if (returnUrl.HasContent())
+        {
+            options = new InteractiveRequestOptions
+            {
+                Interaction = InteractionType.SignIn,
+                ReturnUrl = returnUrl
+            };
+        }
+
+        if (options != null)
+            _navigationManager.NavigateToLogin(loginPath, options);
+        else
+            _navigationManager.NavigateToLogin(loginPath);
     }
 
-    public void Logout(string logoutPath = "authentication/logout")
+    public void Logout(string logoutPath = "authentication/logout", string? returnUrl = null)
     {
-        _navigationManager.NavigateToLogout(logoutPath);
+        _navigationManager.NavigateToLogout(logoutPath, returnUrl);
     }
 
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
