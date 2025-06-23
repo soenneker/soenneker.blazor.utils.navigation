@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -10,7 +11,7 @@ using Soenneker.Extensions.String;
 namespace Soenneker.Blazor.Utils.Navigation;
 
 ///<inheritdoc cref="INavigationUtil"/>
-public class NavigationUtil : INavigationUtil
+public sealed class NavigationUtil : INavigationUtil
 {
     private const int _minHistorySize = 256;
     private const int _additionalHistorySize = 64;
@@ -102,8 +103,13 @@ public class NavigationUtil : INavigationUtil
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _navigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        _navigationManager.LocationChanged -= OnLocationChanged;
+
+        return ValueTask.CompletedTask;
     }
 }
