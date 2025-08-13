@@ -101,11 +101,6 @@ public sealed class NavigationUtil : INavigationUtil
         return result;
     }
 
-    public void Dispose()
-    {
-        _navigationManager.LocationChanged -= OnLocationChanged;
-    }
-
     public ValueTask DisposeAsync()
     {
         _navigationManager.LocationChanged -= OnLocationChanged;

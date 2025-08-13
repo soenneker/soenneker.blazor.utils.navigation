@@ -13,7 +13,7 @@
         <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
         <AssemblyName>Soenneker.Blazor.Utils.Navigation</AssemblyName>
         <PackageId>Soenneker.Blazor.Utils.Navigation</PackageId>
-        <PackageTags>blazor navigation utils c# .net dotnet</PackageTags>
+        <PackageTags>blazor navigation utils c# .net dotnet navigationutil inavigationutil</PackageTags>
         <Copyright>Copyright © 2023-2025 Jake Soenneker</Copyright>
         <Authors>Jake Soenneker</Authors>
         <Company>https://soenneker.com</Company>

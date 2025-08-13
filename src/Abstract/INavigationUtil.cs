@@ -7,7 +7,7 @@ namespace Soenneker.Blazor.Utils.Navigation.Abstract;
 /// A Blazor WebAssembly library that features navigate back, login/logout, reload and more <para/>
 /// Register as Scoped.
 /// </summary>
-public interface INavigationUtil : IDisposable, IAsyncDisposable
+public interface INavigationUtil : IAsyncDisposable
 {
     /// <summary>
     /// Navigates to the specified url.
