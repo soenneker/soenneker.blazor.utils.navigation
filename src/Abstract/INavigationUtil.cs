@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Soenneker.Blazor.Utils.Navigation.Dtos;
+using System;
 using System.Collections.Generic;
 
 namespace Soenneker.Blazor.Utils.Navigation.Abstract;
@@ -39,7 +40,9 @@ public interface INavigationUtil : IAsyncDisposable
     /// </summary>
     void NavigateBack();
 
-    void Login(string logoutPath = "authentication/login", string? returnUrl = null);
+    void Login(string loginPath = "authentication/login", MsalLoginOptions? loginOptions = null);
+
+    void LoginSelectAccount(string loginPath = "authentication/login", string? returnUrl = null, IEnumerable<string>? scopes = null);
 
     void Logout(string logoutPath = "authentication/logout", string? returnUrl = null);
 
