@@ -1,4 +1,4 @@
-﻿using Soenneker.Blazor.Utils.Navigation.Enums;
+using Soenneker.Blazor.Utils.Navigation.Enums;
 using System.Collections.Generic;
 
 namespace Soenneker.Blazor.Utils.Navigation.Dtos;
