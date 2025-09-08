@@ -63,13 +63,12 @@ public sealed class NavigationUtil : INavigationUtil
             Scopes = loginOptions?.Scopes
         };
 
-        string? prompt = loginOptions?.Prompt.Value switch
+        string? prompt = null;
+
+        if (loginOptions?.Prompt != null && loginOptions.Prompt != SignInPrompt.Default)
         {
-            SignInPrompt.SelectAccountValue => "select_account",
-            SignInPrompt.LoginValue => "login",
-            SignInPrompt.ConsentValue => "consent",
-            _ => null
-        };
+            prompt = loginOptions.Prompt.Value;
+        }
 
         if (prompt.HasContent())
         {

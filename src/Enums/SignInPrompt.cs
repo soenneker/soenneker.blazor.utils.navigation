@@ -33,7 +33,7 @@ public sealed partial class SignInPrompt
     /// </code>
     /// </example>
     /// </remarks>
-    public static readonly SignInPrompt Default = new(nameof(Default));
+    public static readonly SignInPrompt Default = new ("default");
 
     /// <summary>
     /// Always show the account picker.
@@ -51,7 +51,7 @@ public sealed partial class SignInPrompt
     /// </code>
     /// </example>
     /// </remarks>
-    public static readonly SignInPrompt SelectAccount = new(nameof(SelectAccount));
+    public static readonly SignInPrompt SelectAccount = new ("select_account");
 
     /// <summary>
     /// Force re-authentication (fresh credentials/MFA).
@@ -70,7 +70,7 @@ public sealed partial class SignInPrompt
     /// </code>
     /// </example>
     /// </remarks>
-    public static readonly SignInPrompt Login = new(nameof(Login));
+    public static readonly SignInPrompt Login = new("login");
 
     /// <summary>
     /// Force the consent screen.
@@ -87,5 +87,7 @@ public sealed partial class SignInPrompt
     /// </code>
     /// </example>
     /// </remarks>
-    public static readonly SignInPrompt Consent = new(nameof(Consent));
+    public static readonly SignInPrompt Consent = new ("consent");
+
+    public static readonly SignInPrompt None = new ("none");
 }
