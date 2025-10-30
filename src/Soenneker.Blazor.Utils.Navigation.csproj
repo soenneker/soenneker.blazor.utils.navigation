@@ -45,6 +45,6 @@
         <PackageReference Include="Intellenum" Version="2.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.10" />
         <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.10" />
-        <PackageReference Include="Soenneker.Extensions.String" Version="4.0.559" />
+        <PackageReference Include="Soenneker.Extensions.String" Version="4.0.562" />
     </ItemGroup>
 </Project>
