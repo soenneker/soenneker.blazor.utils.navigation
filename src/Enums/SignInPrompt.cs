@@ -1,8 +1,8 @@
-using Intellenum;
+using Soenneker.Gen.EnumValues;
 
 namespace Soenneker.Blazor.Utils.Navigation.Enums;
 
-[Intellenum<string>]
+[EnumValue<string>]
 public sealed partial class SignInPrompt
 {
     /// <summary>
