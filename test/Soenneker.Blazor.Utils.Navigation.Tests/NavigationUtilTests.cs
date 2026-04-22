@@ -1,21 +1,19 @@
 using Soenneker.Blazor.Utils.Navigation.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
-
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Blazor.Utils.Navigation.Tests;
 
-[Collection("Collection")]
-public class NavigationUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class NavigationUtilTests : HostedUnitTest
 {
     private readonly INavigationUtil _util;
 
-    public NavigationUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public NavigationUtilTests(Host host) : base(host)
     {
         _util = Resolve<INavigationUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
