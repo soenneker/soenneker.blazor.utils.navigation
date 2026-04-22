@@ -33,10 +33,5 @@
     <ItemGroup>
         <ProjectReference Include="..\..\src\Soenneker.Blazor.Utils.Navigation\Soenneker.Blazor.Utils.Navigation.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="testconfig.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
 </Project>
+
