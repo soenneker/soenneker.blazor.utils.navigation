@@ -16,18 +16,11 @@
         </Content>
     </ItemGroup>
 
-<<<<<<< HEAD
     <ItemGroup>
         <PackageReference Include="Soenneker.Blazor.Mocks.NavigationManager" Version="4.0.413" />
         <PackageReference Include="Soenneker.Utils.Test" Version="4.0.314" />
         <PackageReference Include="Soenneker.Tests.HostedUnit" Version="4.0.13" />
         <PackageReference Include="TUnit" Version="1.37.24" />
-=======
-    <ItemGroup><PackageReference Include="Soenneker.Blazor.Mocks.NavigationManager" Version="4.0.413" />
-        <PackageReference Include="Soenneker.Utils.Test" Version="4.0.315" />
-        <PackageReference Include="Soenneker.Tests.FixturedUnit" Version="4.0.2303" />
-        <PackageReference Include="xUnit.v3" Version="3.2.2" />
->>>>>>> 508e7ab5232b196d5b76b471864194f04e46395a
     </ItemGroup>
 
     <ItemGroup>
