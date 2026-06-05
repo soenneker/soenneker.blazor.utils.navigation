@@ -131,6 +131,10 @@ public sealed class NavigationUtil : INavigationUtil
         return result;
     }
 
+    /// <summary>
+    /// Asynchronously releases resources used by the current instance.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public ValueTask DisposeAsync()
     {
         _navigationManager.LocationChanged -= OnLocationChanged;

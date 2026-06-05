@@ -2,6 +2,9 @@ using Soenneker.Gen.EnumValues;
 
 namespace Soenneker.Blazor.Utils.Navigation.Enums;
 
+/// <summary>
+/// Represents the sign in prompt.
+/// </summary>
 [EnumValue<string>]
 public sealed partial class SignInPrompt
 {
@@ -89,5 +92,8 @@ public sealed partial class SignInPrompt
     /// </remarks>
     public static readonly SignInPrompt Consent = new ("consent");
 
+    /// <summary>
+    /// The none.
+    /// </summary>
     public static readonly SignInPrompt None = new ("none");
 }

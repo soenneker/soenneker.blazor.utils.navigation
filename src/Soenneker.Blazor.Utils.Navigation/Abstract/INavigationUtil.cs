@@ -40,11 +40,31 @@ public interface INavigationUtil : IAsyncDisposable
     /// </summary>
     void NavigateBack();
 
+    /// <summary>
+    /// Executes the login operation.
+    /// </summary>
+    /// <param name="loginPath">The login path.</param>
+    /// <param name="loginOptions">The login options.</param>
     void Login(string loginPath = "authentication/login", MsalLoginOptions? loginOptions = null);
 
+    /// <summary>
+    /// Executes the login select account operation.
+    /// </summary>
+    /// <param name="loginPath">The login path.</param>
+    /// <param name="returnUrl">The return url.</param>
+    /// <param name="scopes">The scopes.</param>
     void LoginSelectAccount(string loginPath = "authentication/login", string? returnUrl = null, IEnumerable<string>? scopes = null);
 
+    /// <summary>
+    /// Executes the logout operation.
+    /// </summary>
+    /// <param name="logoutPath">The logout path.</param>
+    /// <param name="returnUrl">The return url.</param>
     void Logout(string logoutPath = "authentication/logout", string? returnUrl = null);
 
+    /// <summary>
+    /// Gets current uri.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     Uri GetCurrentUri();
 }
