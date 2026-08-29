@@ -12,7 +12,7 @@ using Soenneker.Extensions.String;
 
 namespace Soenneker.Blazor.Utils.Navigation;
 
-///<inheritdoc cref="INavigationUtil"/>
+/// <inheritdoc cref="INavigationUtil"/>
 public sealed class NavigationUtil : INavigationUtil
 {
     private const int _minHistorySize = 256;
