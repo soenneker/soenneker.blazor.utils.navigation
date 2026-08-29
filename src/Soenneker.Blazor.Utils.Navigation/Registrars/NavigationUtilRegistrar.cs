@@ -13,6 +13,8 @@ public static class NavigationRegistrar
     /// <summary>
     /// Shorthand for <code>services.TryAddScoped</code>
     /// </summary>
+    /// <param name="services">Service collection that receives the registration.</param>
+    /// <returns>The same service collection, so additional registrations can be chained.</returns>
     public static IServiceCollection AddNavigationUtilAsScoped(this IServiceCollection services)
     {
         services.TryAddScoped<INavigationUtil, NavigationUtil>();
@@ -22,6 +24,8 @@ public static class NavigationRegistrar
     /// <summary>
     /// Call AFTER the WebAssembly/IServiceProvider has been built, aka builder.Build()
     /// </summary>
+    /// <param name="provider">Provider for the warmup navigation operation.</param>
+    /// <returns>The resulting service Provider.</returns>
     public static IServiceProvider WarmupNavigation(this IServiceProvider provider)
     {
         provider.GetService<INavigationUtil>();

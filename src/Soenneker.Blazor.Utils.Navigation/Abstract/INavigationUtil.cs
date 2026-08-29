@@ -33,6 +33,7 @@ public interface INavigationUtil : IAsyncDisposable
     /// <summary>
     /// Reloads at the current URI.
     /// </summary>
+    /// <param name="forceLoad">Whether force load.</param>
     void Reload(bool forceLoad);
 
     /// <summary>
@@ -41,30 +42,30 @@ public interface INavigationUtil : IAsyncDisposable
     void NavigateBack();
 
     /// <summary>
-    /// Executes the login operation.
+    /// Logs in navigation.
     /// </summary>
-    /// <param name="loginPath">The login path.</param>
-    /// <param name="loginOptions">The login options.</param>
+    /// <param name="loginPath">Path of the login to use.</param>
+    /// <param name="loginOptions">Login Options for the login operation.</param>
     void Login(string loginPath = "authentication/login", MsalLoginOptions? loginOptions = null);
 
     /// <summary>
-    /// Executes the login select account operation.
+    /// Logs in select Account.
     /// </summary>
-    /// <param name="loginPath">The login path.</param>
-    /// <param name="returnUrl">The return url.</param>
-    /// <param name="scopes">The scopes.</param>
+    /// <param name="loginPath">Path of the login to use.</param>
+    /// <param name="returnUrl">URL of the return to target.</param>
+    /// <param name="scopes">scopes to process.</param>
     void LoginSelectAccount(string loginPath = "authentication/login", string? returnUrl = null, IEnumerable<string>? scopes = null);
 
     /// <summary>
-    /// Executes the logout operation.
+    /// Logs out navigation.
     /// </summary>
-    /// <param name="logoutPath">The logout path.</param>
-    /// <param name="returnUrl">The return url.</param>
+    /// <param name="logoutPath">Path of the logout to use.</param>
+    /// <param name="returnUrl">URL of the return to target.</param>
     void Logout(string logoutPath = "authentication/logout", string? returnUrl = null);
 
     /// <summary>
     /// Gets current uri.
     /// </summary>
-    /// <returns>The result of the operation.</returns>
+    /// <returns>The requested URI.</returns>
     Uri GetCurrentUri();
 }
