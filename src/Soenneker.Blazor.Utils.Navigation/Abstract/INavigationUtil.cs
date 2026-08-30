@@ -26,7 +26,7 @@ public interface INavigationUtil : IAsyncDisposable
     void NavigateTo(string uri, IDictionary<string, string> queryString, bool forceLoad = false);
 
     /// <summary>
-    /// Returns true if it is possible to navigate to the previous UR.
+    /// Returns true when at least two observed locations are available in this utility's history.
     /// </summary>
     bool CanNavigateBack { get; }
 
@@ -37,7 +37,7 @@ public interface INavigationUtil : IAsyncDisposable
     void Reload(bool forceLoad);
 
     /// <summary>
-    /// Navigates to the previous url if possible or does nothing if it is not.
+    /// Navigates to the previously observed location if possible, or does nothing when no prior location is tracked.
     /// </summary>
     void NavigateBack();
 
@@ -52,7 +52,7 @@ public interface INavigationUtil : IAsyncDisposable
     /// Logs in select Account.
     /// </summary>
     /// <param name="loginPath">Path of the login to use.</param>
-    /// <param name="returnUrl">URL of the return to target.</param>
+    /// <param name="returnUrl">Optional return URL within the application base URI.</param>
     /// <param name="scopes">scopes to process.</param>
     void LoginSelectAccount(string loginPath = "authentication/login", string? returnUrl = null, IEnumerable<string>? scopes = null);
 
@@ -60,7 +60,7 @@ public interface INavigationUtil : IAsyncDisposable
     /// Logs out navigation.
     /// </summary>
     /// <param name="logoutPath">Path of the logout to use.</param>
-    /// <param name="returnUrl">URL of the return to target.</param>
+    /// <param name="returnUrl">Optional return URL within the application base URI.</param>
     void Logout(string logoutPath = "authentication/logout", string? returnUrl = null);
 
     /// <summary>

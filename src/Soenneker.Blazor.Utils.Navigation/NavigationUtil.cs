@@ -22,7 +22,7 @@ public sealed class NavigationUtil : INavigationUtil
 
     public NavigationUtil(NavigationManager navigationManager)
     {
-        _navigationManager = navigationManager;
+        _navigationManager = navigationManager ?? throw new ArgumentNullException(nameof(navigationManager));
         _history = new List<string>(_minHistorySize + _additionalHistorySize)
         {
             _navigationManager.Uri
@@ -33,12 +33,24 @@ public sealed class NavigationUtil : INavigationUtil
 
     public void NavigateTo(string uri, bool forceLoad = false)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(uri);
         _navigationManager.NavigateTo(uri, forceLoad);
     }
 
     public void NavigateTo(string uri, IDictionary<string, string> queryString, bool forceLoad = false)
     {
-        _navigationManager.NavigateTo(QueryHelpers.AddQueryString(uri, queryString), forceLoad);
+        ArgumentException.ThrowIfNullOrWhiteSpace(uri);
+        ArgumentNullException.ThrowIfNull(queryString);
+
+        var nullableQueryString = new Dictionary<string, string?>(queryString.Count);
+
+        foreach (KeyValuePair<string, string> pair in queryString)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(pair.Key);
+            nullableQueryString.Add(pair.Key, pair.Value);
+        }
+
+        _navigationManager.NavigateTo(QueryHelpers.AddQueryString(uri, nullableQueryString), forceLoad);
     }
 
     public bool CanNavigateBack => _history.Count >= 2;
@@ -56,11 +68,16 @@ public sealed class NavigationUtil : INavigationUtil
 
     public void Login(string loginPath = "authentication/login", MsalLoginOptions? loginOptions = null)
     {
+        ValidateLocalTarget(loginPath, nameof(loginPath));
+
+        if (loginOptions?.ReturnUrl is not null)
+            ValidateLocalTarget(loginOptions.ReturnUrl, nameof(loginOptions.ReturnUrl));
+
         var opts = new InteractiveRequestOptions
         {
             Interaction = InteractionType.SignIn,
-            ReturnUrl = loginOptions?.ReturnUrl,
-            Scopes = loginOptions?.Scopes
+            ReturnUrl = (loginOptions?.ReturnUrl)!,
+            Scopes = (loginOptions?.Scopes)!
         };
 
         string? prompt = null;
@@ -81,6 +98,9 @@ public sealed class NavigationUtil : INavigationUtil
         {
             foreach (KeyValuePair<string, string> kv in loginOptions.ExtraParameters)
             {
+                ArgumentException.ThrowIfNullOrWhiteSpace(kv.Key);
+                ArgumentNullException.ThrowIfNull(kv.Value);
+
                 // Respect previously-added keys; TryAdd will no-op on duplicates.
                 opts.TryAddAdditionalParameter(kv.Key, kv.Value);
             }
@@ -103,6 +123,11 @@ public sealed class NavigationUtil : INavigationUtil
 
     public void Logout(string logoutPath = "authentication/logout", string? returnUrl = null)
     {
+        ValidateLocalTarget(logoutPath, nameof(logoutPath));
+
+        if (returnUrl is not null)
+            ValidateLocalTarget(returnUrl, nameof(returnUrl));
+
         _navigationManager.NavigateToLogout(logoutPath, returnUrl);
     }
 
@@ -129,6 +154,17 @@ public sealed class NavigationUtil : INavigationUtil
     {
         Uri result = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
         return result;
+    }
+
+    private void ValidateLocalTarget(string target, string parameterName)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(target, parameterName);
+
+        Uri absoluteTarget = _navigationManager.ToAbsoluteUri(target);
+        var applicationBase = new Uri(_navigationManager.BaseUri, UriKind.Absolute);
+
+        if (!applicationBase.IsBaseOf(absoluteTarget))
+            throw new ArgumentException("Authentication navigation targets must remain within the application base URI.", parameterName);
     }
 
     /// <summary>
