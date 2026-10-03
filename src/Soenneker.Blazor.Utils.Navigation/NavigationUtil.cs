@@ -42,15 +42,12 @@ public sealed class NavigationUtil : INavigationUtil
         ArgumentException.ThrowIfNullOrWhiteSpace(uri);
         ArgumentNullException.ThrowIfNull(queryString);
 
-        var nullableQueryString = new Dictionary<string, string?>(queryString.Count);
-
         foreach (KeyValuePair<string, string> pair in queryString)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(pair.Key);
-            nullableQueryString.Add(pair.Key, pair.Value);
         }
 
-        _navigationManager.NavigateTo(QueryHelpers.AddQueryString(uri, nullableQueryString), forceLoad);
+        _navigationManager.NavigateTo(QueryHelpers.AddQueryString(uri, queryString!), forceLoad);
     }
 
     public bool CanNavigateBack => _history.Count >= 2;
